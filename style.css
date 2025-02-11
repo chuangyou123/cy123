@@ -1,0 +1,92 @@
+@font-face {
+    font-family: 'Open Sans Condensed';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Open Sans Cond Light'), local('OpenSans-CondensedLight'), url(https://fonts.gstatic.com/s/opensanscondensed/v10/gk5FxslNkTTHtojXrkp-xBEur64QvLD-0IbiAdTUNXE.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
+@font-face {
+	font-family: Typewriter;
+	src: url('MonospaceTypewriter.ttf');
+}
+
+* {
+	font-family: 'Typewriter';
+    padding: 0;
+    margin: 0;
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Opera and Firefox */
+}
+
+*:focus {
+    outline: none;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 8px;
+}
+
+#msglog {
+    right: 0;
+    top: 0;
+    position: fixed;
+    height: 100vh;
+    width: 145px;
+    font-size: 12px;
+    text-align: center;
+    overflow: scroll;
+    border: 1px solid;
+}
+
+#deets {
+    float: left;
+}
+
+#nr {
+    width: 100%;
+    bottom: 0;
+}
+
+#main {
+    height: 300px;
+}
+
+#main, #shop, #save {
+    border: outset 5px;
+    width: calc(100vw - 166px);
+}
+
+#shop {
+    overflow-y: scroll;
+    max-height: 273px;
+}
+
+#upgrades, #nupgrades, #items, #nitems, #roomeditor {
+    border: 2px solid;
+    display: flex;
+    flex-flow: column;
+}
+
+.flexbox {
+    width: 100%;
+    display: flex;
+}
+
+.flexItem {
+    flex-basis: 1000px;
+}
+
+.roomweightthing {
+    background: silver;
+    border: outset grey 3px;
+}

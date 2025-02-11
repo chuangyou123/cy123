@@ -1,0 +1,20 @@
+body {
+    background-color: ghostwhite;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #A0A0A0;
+}
+
+#msglog {
+    border-color: grey;
+}
+
+#main, #shop, #save {
+    background-color: silver;
+    border-color: lightgrey;
+}
+
+#upgrades, #items {
+    border-color: grey;
+}

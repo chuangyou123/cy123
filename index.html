@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>莱茵哈特故居</title>
+
+    <script src='ExpantaNum.js'></script>
+    <script src='VebleNum.js'></script>
+
+    <script src='notation.js'></script>
+
+    <script src='data.js'></script>
+
+    <script src='game.js'></script>
+    <script src='upgrade.js'></script>
+
+    <script src='main.js'></script>
+
+    <link rel="stylesheet" href="style.css">
+    <link id='theme' rel="stylesheet" href="light.css">
+
+    <link rel="shortcut icon" href="piratedimage.png" type="image/x-icon">
+</head>
+<body>
+    <div id='main'>
+        <div id='deets'></div>
+        <br><br><br><br><br>
+        <div id='fight'></div>
+        <button id='attack' onclick='game.attack()'>攻击!!</button>
+        <div id='stairs'></div><div id='bed'></div>
+        <div id='bread'></div><div id='cf'></div><div id='lab'></div><div id='fc'></div><div id="cr"></div><br><br>
+        <button id='climb' onclick='game.climb(true)'>下一层</button>
+        <button id='noclimb' onclick='game.climb(false)'>留在这层</button>
+        <button id='sleep' onclick='game.sleep(true)'>小睡片刻...</button>
+        <button id='nosleep' onclick='game.sleep(false)'>保持清醒</button>
+        <button id='fuse' onclick='game.fuse(true)'>把面包和巧克力融合在一起</button>
+        <button id='nofuse' onclick='game.fuse(false)'>不要使用定影器</button>
+        <button id='gn' onclick='game.gn(true)'>向巧克力屈服（奇怪的翻译）</button>
+        <button id='nogn' onclick='game.gn(false)'>抵抗</button>
+        <button id='nr' onclick="game.nextRoom()">下个房间</button>
+    </div>
+    <div id='shop'>
+        <div id='snav' class='flexbox'>
+            <button id='s0' onclick='game.tabTo(0)' class='flexItem'>常态</button>
+            <button id='s1' onclick='game.tabTo(1)' class='flexItem'>可怕的</button>
+            <button id="s2" onclick='game.tabTo(2)' class="flexItem">房间重量</button>
+        </div>
+        <div id='normalshop'>
+            <div id='upgrades'>
+                <button id='autoProgress' onclick='UPGRADES.autoProgress.buy()'>自动浏览房间 - 240 黄金</button>
+                <button id='autoKill' onclick='UPGRADES.autoKill.buy()'>自动攻击 - 1e8 黄金</button>
+                <button id='autoBuy' onclick='UPGRADES.autoBuy.buy()'>自动买药水- 1e300 黄金</button>
+                <button id='autoClimb' onclick='UPGRADES.autoClimb.buy()'>自动爬楼梯 - e1e100 黄金</button>
+                <button id='keepUpg' onclick='UPGRADES.keepUpg.buy()'>升级你的梦 - ee1e5000 黄金</button>
+            </div>
+            <div id='items'>
+                
+            </div>
+        </div>
+        <div id='nightmareshop'>
+            <div id='nupgrades'>
+                <button id='autoNightmare' onclick='UPGRADES.autoNightmare.buy()'>被动产生噩梦燃料- 100恶魔燃料</button>
+            </div>
+            <div id='nitems'>
+                
+            </div>
+        </div>
+        <div id="roomeditor">
+
+        </div>
+    </div>
+    <div id='save'>
+        <button onclick="gamepause()">暂停</button>
+        <button onclick="wipe()">硬重置</button>
+        <button onclick="exp()">导出存档</button>
+        <button onclick="imp()">导入存档</button>
+    </div>
+    <div id='msglog'></div>
+    <script>init();</script>
+    汉化作者：cy123，因作者技术有限，只能汉化到这样
+</body>
+</html>
