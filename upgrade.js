@@ -70,66 +70,66 @@ class Item {
 
     effect() {
         switch(this.name) {
-            case 'small health potion':
+            case '小型生命药剂':
                 game.hp = game.hp.add(D(10).pow(game.floor.add(1)));
                 break;
-            case 'medium health potion':
+            case '中型生命药剂':
                 game.hp = game.hp.add(D(60).pow(game.floor.add(1)));
                 break;
-            case 'large health potion':
+            case '大型生命药剂':
                 game.hp = game.hp.add(D(300).pow(game.floor.add(1)));
                 break;
-            case 'super health potion':
+            case '超大型生命药剂':
                 game.hp = game.hp.add(D(1000).pow(game.floor.add(1)));
                 break;
-            case 'small strength potion':
+            case '小型强壮药剂':
                 game.dmg = game.dmg.add(5);
                 break;
-            case 'medium strength potion':
+            case '中型强壮药剂':
                 game.dmg = game.dmg.mul(2);
                 break;
-            case 'large strength potion':
+            case '大型强壮药剂':
                 game.dmg = game.dmg.pow(2);
                 break;
-            case 'small luck potion':
+            case '小型幸运药剂':
                 game.lck = game.lck.add(2);
                 break;
-            case 'medium luck potion':
+            case '中型幸运药剂':
                 game.lck = game.lck.mul(2);
                 break;
-            case 'large luck potion':
+            case '大型幸运药剂':
                 game.lck = game.lck.pow(2);
                 break;
-            case 'dark health potion':
+            case '黑暗生命药剂':
                 game.hp = game.hp.add(game.dmg);
                 break;
-            case 'dark strength potion':
+            case '黑暗强壮药剂':
                 game.dmg = game.dmg.add(game.lck);
                 break;
-            case 'dark luck potion':
+            case '黑暗幸运药剂':
                 game.lck = game.lck.add(game.hp.log10());
                 break;
-            case 'potent dark health potion':
+            case '强效黑暗生命药剂':
                 game.hp = game.hp.tetr(2);
                 game.potentPot[0]++;
                 this.cost = D(10).tetr(game.potentPot[0]);
                 break;
-            case 'potent dark strength potion':
+            case '强效黑暗强壮药剂':
                 game.dmg = game.dmg.tetr(2);
                 game.potentPot[1]++;
                 this.cost = D(10).tetr(game.potentPot[1]);
                 break;
-            case 'potent dark luck potion':
+            case '强效黑暗幸运药剂':
                 game.lck = game.lck.tetr(2);
                 game.potentPot[2]++;
                 this.cost = D(10).tetr(game.potentPot[2]);
                 break;
-            case 'nightmare potion':
+            case '噩梦药剂':
                 if (game.nightmarePower.lte(1)) game.nightmarePower = game.nightmarePower.mul(2);
                 else if (game.nightmarePower.lte('ee200')) game.nightmarePower = game.nightmarePower.pow(2);
                 else game.nightmarePower = game.nightmarePower.tetr(2);
                 break;
-            case 'shadow blood':
+            case '暗影之血':
                 game.hp = game.nightmareFuel.arrow(game.nightmareLayer)(2);
                 game.dmg = game.nightmareFuel.arrow(game.nightmareLayer)(2);
                 game.lck = game.nightmareFuel.arrow(game.nightmareLayer)(2);

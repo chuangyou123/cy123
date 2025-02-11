@@ -82,10 +82,10 @@ class Game {
 						.pow(D(1).div(game.dreamLayer.add(1)))
 				);
 			$("deets").innerText = `
-        You are currently in room ${f(game.room)} of floor ${f(game.floor)} ${game.dreamLayer.gt(0) ? `of dream layer ${f(game.dreamLayer)}` : ""} ${game.nightmareLayer.gt(0) ? `of nightmare layer ${f(game.nightmareLayer)}` : ""} which is a${beginsVowel(game.currentRoomType) ? "n" : ""} ${game.currentRoomType}
-        You have ${f(game.gold)} gold ${game.nightmareFuel.gt(0) ? `and ${f(game.nightmareFuel)} nightmare fuel` : ""}
-        You have ${f(game.hp)} hp
-        ${game.has.chocbread ? "You have Pain au Chocolat" : `${game.has.bread ? "You have bread" : ""}${game.has.chocolate ? ", chocolate" : ""}${game.has.fuser ? ", fuser" : ""}`}
+        你目前在房间 ${f(game.room)} 楼层 ${f(game.floor)} ${game.dreamLayer.gt(0) ? `梦想 ${f(game.dreamLayer)}` : ""} ${game.nightmareLayer.gt(0) ? `噩梦层 ${f(game.nightmareLayer)}` : ""}这是一个${beginsVowel(game.currentRoomType) ? "n" : ""} ${game.currentRoomType}
+        你有 ${f(game.gold)} 个黄金 ${game.nightmareFuel.gt(0) ? `和 ${f(game.nightmareFuel)} 噩梦燃料` : ""}
+        生命值：${f(game.hp)}
+        ${game.has.chocbread ? "你有块巧克力" : `${game.has.bread ? "你有一个面包" : ""}${game.has.chocolate ? "和巧克力" : ""}${game.has.fuser ? "和福瑟": ""}`}
         `;
 			for (let i of ITEMS) i.update();
 			if (game.dreamLayer.gt(2)) $("keepUpg").style.display = "inline-block";
@@ -95,7 +95,7 @@ class Game {
 			if (game.currentEnemy instanceof Enemy) {
 				$("nr").disabled = "disabled";
 				$("fight").innerHTML = `
-            You are fighting a${beginsVowel(game.currentEnemy.name) ? "n" : ""} ${game.currentEnemy.name} which has ${f(game.currentEnemy.hp)} health<br>
+           你在和一个${beginsVowel(game.currentEnemy.name) ? "n" : ""} ${game.currentEnemy.name} 他有 ${f(game.currentEnemy.hp)} 生命值<br>
             `;
 				$("attack").style.display = "inline-block";
 				if (game.upgradesBought.autoKill) game.attack();
@@ -110,7 +110,7 @@ class Game {
 				}
 			}
 			if (game.isInStairwell) {
-				$("stairs").innerText = "Do you want to climb to the next floor of Reinhardt's House?? Enemies will be much stronger but killing them will be even more rewarding!";
+				$("stairs").innerText = "你想爬到莱因哈特家的下一层吗？？敌人会更强大，但是杀死他们会更有回报！";
 				$("climb").style.display = "inline-block";
 				$("noclimb").style.display = "inline-block";
 				if (game.upgradesBought.autoClimb) game.climb(true);
@@ -120,7 +120,7 @@ class Game {
 				$("noclimb").style.display = "none";
 			}
 			if (game.isInBedroom) {
-				$("bed").innerText = "Do you want to take a nap? You shouldn't be out for long...";
+				$("bed").innerText = "你想打个盹吗？你不应该出去太久..."
 				$("sleep").style.display = "inline-block";
 				$("nosleep").style.display = "inline-block";
 			} else {
@@ -129,7 +129,7 @@ class Game {
 				$("nosleep").style.display = "none";
 			}
 			if (game.isInCR) {
-				$("cr").innerText = "You're in the control room, the darkness creeps around you...";
+				$("cr").innerText = "你在控制室里，黑暗笼罩着你...";
 				$("gn").style.display = "inline-block";
 				$("nogn").style.display = "inline-block";
 			} else {
@@ -138,16 +138,13 @@ class Game {
 				$("nogn").style.display = "none";
 			}
 			if (game.isInKitchen) {
-				$("bread").innerText = "You found some bread, interesting...";
+				$("bread").innerText = "你找到一些巧克力";
 			} else $("bread").innerText = "";
-			if (game.isInCFRoom) {
-				$("cf").innerText = "You found some chocolate, interesting...";
-			} else $("cf").innerText = "";
 			if (game.isInLab) {
-				$("lab").innerText = "You found a weird device, it says fuser...";
+				$("lab").innerText = "你找到了一个奇怪的装置，上面写着富瑟";
 			} else $("lab").innerText = "";
 			if (game.isInFC) {
-				$("fc").innerText = "You are in a room with an interesting device, there's a slot for the fuser, the bread and the chocolate. Do you want to fuse the bread and chocolate?";
+				$("fc").innerText = "你在一个房间里，房间里有一个有趣的设备，有一个用于热熔器、面包和巧克力的插槽。你想把面包和巧克力融合起来吗？";
 				$("fuse").style.display = "inline-block";
 				$("nofuse").style.display = "inline-block";
 			} else {
@@ -192,9 +189,10 @@ class Game {
 		this.currentEnemy = null;
 		this.currentRoomType = "empty room";
 		if (game.nightmareLayer.lt(3)) {
-			if (this.NL) this.logmsg(`You died and lost your gold, and your worst fear has come true... You haven't woken up. You're still in this nightmare...`, "darkred");
-			else if (wake) this.logmsg(`*Yawn* You wake up, though it seems you got thrown out the window and have to start again. It seems you still have the stats you gained in the dream!`, "slateblue");
-			else this.logmsg(`You died and lost your gold! You are back at the entrance but you'll keep your upgrades, damage and luck${game.NL ? ", and you will gain nightmare fuel" : ""}!!`, "darkred");
+			if (this.NL) this.logmsg(`你死了，失去了你的金子，你最害怕的事情变成了现实...你还没醒。你还在这个噩梦中...`, "darkred");
+			else if (wake) this.logmsg(`*打哈欠*你醒了，尽管看起来你被扔出了窗外，不得不重新开始。看起来你仍然拥有你在梦里得到的数据！
+`, "slateblue");
+			else this.logmsg(`你死了，失去了你的金子！你回到了入口处，但你将保留你的升级、伤害和运气${game.NL ? ", 你将获得噩梦燃料" : ""}!!`, "darkred");
 		} else this.logmsg(`You died`, "darkred");
 	}
 
@@ -205,24 +203,24 @@ class Game {
 		this.room = this.room.add(1);
 		this.currentRoomType = chooseWeighted(data.rooms).name;
 		switch (this.currentRoomType) {
-			case "empty room":
+			case "spare room":
 				break;
 			case "monster room":
 				this.currentEnemy = new Enemy(this.chooseMonster());
-				if (!game.upgradesBought.autoKill) this.logmsg(`A wild ${this.currentEnemy.name} appears!!!`);
+				if (!game.upgradesBought.autoKill) this.logmsg(`一个野生的 ${this.currentEnemy.name} 出现了!!!`);
 				break;
 			case "money room":
 				let reward = chooseWeighted(data.moneyTreasures);
 				let gain = randBetween(reward.gold[0], reward.gold[1]).pow(game.lck.pow(0.66));
 				game.gold = game.gold.add(gain);
-				this.logmsg(`You found a${beginsVowel(reward.name) ? "n" : ""} ${reward.name} worth ${f(gain)} gold!`, "gold");
+				this.logmsg(`你找到了一个${beginsVowel(reward.name) ? "n" : ""} ${reward.name} 价值 ${f(gain)} 黄金!`, "gold");
 				break;
-			case "potion lab":
+			case "potion laboratory":
 				let potion = chooseWeighted(data.potions);
 				switch (potion.type) {
-					case "heal":
+					case "cure":
 						game.hp = game.hp.add(D(potion.potency).pow(game.floor.add(1)));
-						if (!game.upgradesBought.autoBuy) this.logmsg(`You found a${beginsVowel(potion.name) ? "n" : ""} ${potion.name} that healed you for ${f(D(potion.potency).pow(game.floor.add(1)))} hp!!`, "blue");
+						if (!game.upgradesBought.autoBuy) this.logmsg(`你找到了一个${beginsVowel(potion.name) ? "n" : ""} ${potion.name}治愈了你 ${f(D(potion.potency).pow(game.floor.add(1)))} 生命值!!`, "blue");
 						break;
 				}
 				break;
@@ -232,7 +230,7 @@ class Game {
 					this.nextRoom();
 				} else {
 					this.isInStairwell = true;
-					this.logmsg(`You found tall staircase! Do you want to climb up to the next floor of Reinhardt's House?`, "lime");
+					this.logmsg(`你找到了高高的楼梯！你想爬到莱因哈特家的下一层吗？`, "lime");
 				}
 				break;
 			case "bedroom":
@@ -241,7 +239,7 @@ class Game {
 					this.nextRoom();
 				} else {
 					this.isInBedroom = true;
-					this.logmsg(`You found Reinhardt's bedroom! Searching through such a big house must be tiring, perhaps you should have a sleep?`, "turquoise");
+					this.logmsg(`你找到了莱因哈特的卧室！在这么大的房子里搜寻一定很累，也许你应该睡一觉？`, "turquoise");
 				}
 				break;
 			case "kitchen":
@@ -251,17 +249,17 @@ class Game {
 				} else {
 					this.isInKitchen = true;
 					this.has.bread = true;
-					this.logmsg(`You found some bread, interesting...`, "brown");
+					this.logmsg(`你找到了一些面包`, "brown");
 				}
 				break;
-			case "chocolate fountain room":
+			case "chocolate fountain":
 				if (this.dreamLayer.lt(5) || this.has.chocolate || !this.has.bread || this.has.chocbread) {
 					this.room = this.room.sub(1);
 					this.nextRoom();
 				} else {
 					this.isInCFRoom = true;
 					this.has.chocolate = true;
-					this.logmsg(`You found some chocolate, interesting... You also complain about Reinhardt having a chocolate fountain and you don't`, "brown");
+					this.logmsg(`你发现了一些巧克力，你还抱怨莱因哈特有一个巧克力喷泉，但你没有`, "brown");
 				}
 				break;
 			case "lab":
@@ -271,7 +269,7 @@ class Game {
 				} else {
 					this.isInLab = true;
 					this.has.fuser = true;
-					this.logmsg(`You found a weird device labelled "fuser", interesting...`, "brown");
+					this.logmsg(`你发现了一个标有“福瑟”的奇怪装置`, "brown");
 				}
 				break;
 			case "fusion chamber":
@@ -280,7 +278,7 @@ class Game {
 					this.nextRoom();
 				} else {
 					this.isInFC = true;
-					this.logmsg(`You found the fusion chamber, hmmmm........`, "lightblue");
+					this.logmsg(`你找到了聚变室`, "lightblue");
 				}
 				break;
 			case "control room":
@@ -289,7 +287,7 @@ class Game {
 					this.nextRoom();
 				} else {
 					this.isInCR = true;
-					this.logmsg(`You found the control room, there's a box for you to put the Pain au Chocolat in. This room is very dark despite the many windows.`, "purple");
+					this.logmsg(`你找到了控制室，那里有一个盒子，你可以把巧克力放进去。尽管有许多窗户，这个房间还是很暗。`, "purple");
 				}
 				break;
 		}
@@ -300,7 +298,7 @@ class Game {
 		if (bool) {
 			game.floor = game.floor.add(1);
 			game.room = D(0);
-			game.logmsg(`You are now on floor ${f(game.floor)}!`, "hotpink");
+			game.logmsg(`你现在在楼层 ${f(game.floor)}!`, "hotpink");
 		}
 		game.nextRoom();
 	}
@@ -320,7 +318,7 @@ class Game {
 			game.shadowBlood = 0;
 			if (!game.upgradesBought.keepUpg) for (let i in game.upgradesBought) game.upgradesBought[i] = false;
 			game.dreamLayer = game.dreamLayer.add(1);
-			game.logmsg(`You fell deeper into the dreams`, "silver");
+			game.logmsg(`你险入了更深的梦境`, "silver");
 		}
 		game.nextRoom();
 	}
@@ -362,7 +360,7 @@ class Game {
 			$("theme").href = "dark.css";
 			for (let i in game.upgradesBought) game.upgradesBought[i] = false;
 			game.nightmareLayer = game.nightmareLayer.add(1);
-			game.logmsg(`The chocolate surrounds you, you're covered in its sticky, sweet goodness. You give in. Nothing else matters. Only... Chocolate...`, "darkorchid");
+			game.logmsg(`巧克力包围着你，你被它黏黏的、甜甜的美味所覆盖。你屈服了。其他都不重要。仅仅...绍科拉特`, "darkorchid");
 		}
 		game.nextRoom();
 	}
@@ -418,7 +416,7 @@ class Enemy {
 		let g = data.monsterStats[this.name].gold;
 		let gain = randBetween(g[0], g[1]);
 		game.gold = game.gold.add(gain.max(gain.mul(game.dreamLayer.add(1).mul(D(10).pow(9.2).pow(game.lck.log10()))).pow(game.floor.mul(2).mul(game.dreamLayer.add(1)))));
-		if (!game.upgradesBought.autoKill) game.logmsg(`You kill the ${game.currentEnemy.name} and it drops ${f(gain.max(gain.mul(game.dreamLayer.add(1).mul(D(10).pow(9.2).pow(game.lck.log10()))).pow(game.floor.mul(2).mul(game.dreamLayer.add(1)))))} gold`, "red");
+		if (!game.upgradesBought.autoKill) game.logmsg(`你杀似了 ${game.currentEnemy.name} 他下降了${f(gain.max(gain.mul(game.dreamLayer.add(1).mul(D(10).pow(9.2).pow(game.lck.log10()))).pow(game.floor.mul(2).mul(game.dreamLayer.add(1)))))} 黄金`, "red");
 		game.currentEnemy = null;
 	}
 }

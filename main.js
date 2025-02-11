@@ -54,7 +54,7 @@ let UPGRADES = {
 
 function save() {
 	let j = JSON.stringify(game);
-	let e = btoa(j);
+	let e = btoa(j); 
 	localStorage.setItem("rhsave", e);
 }
 
